@@ -1,0 +1,32 @@
+{
+  "name": "doe-tocantins",
+  "version": "1.0.0",
+  "description": "DOE Tocantins - Diário Oficial do Estado do Tocantins monitoring system",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "mobile"
+  ],
+  "scripts": {
+    "dev:backend": "npm -w doe-backend run dev",
+    "dev:mobile": "npm -w doe-mobile run start",
+    "build:backend": "npm -w doe-backend run build",
+    "build:mobile": "npm -w doe-mobile run build",
+    "test": "npm run test --workspaces --if-present",
+    "test:backend": "npm -w doe-backend run test",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:backend": "npm -w doe-backend run lint",
+    "lint:mobile": "npm -w doe-mobile run lint",
+    "format": "npm run format --workspaces --if-present",
+    "format:check": "npm run format:check --workspaces --if-present",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "db:migrate": "npm -w doe-backend run db:migrate",
+    "db:generate": "npm -w doe-backend run db:generate",
+    "db:seed": "npm -w doe-backend run db:seed"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

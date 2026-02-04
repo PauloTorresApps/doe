@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  name       String
+  provider   String
+  providerId String   @map("provider_id")
+  avatarUrl  String?  @map("avatar_url")
+  fcmToken   String?  @map("fcm_token")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  keywords Keyword[]
+
+  @@unique([provider, providerId])
+  @@map("users")
+}
+
+model Keyword {
+  id         String   @id @default(uuid())
+  expression String
+  userId     String   @map("user_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, expression])
+  @@index([userId])
+  @@map("keywords")
+}
+
+model Publication {
+  id            String    @id @default(uuid())
+  doeId         Int       @unique @map("doe_id")
+  edition       String
+  publishedDate DateTime  @map("published_date")
+  pdfUrl        String    @map("pdf_url")
+  thumbnailUrl  String?   @map("thumbnail_url")
+  pageCount     Int?      @map("page_count")
+  title         String?
+  content       String?
+  supplement    Boolean   @default(false)
+  processedAt   DateTime? @map("processed_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  @@index([publishedDate])
+  @@map("publications")
+}

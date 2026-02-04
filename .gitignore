@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+prompts/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test coverage
+coverage/
+
+# Firebase credentials (never commit)
+**/firebase-service-account.json
+**/google-services.json
+**/GoogleService-Info.plist
+
+# Prisma
+backend/prisma/migrations/**/migration_lock.toml
+
+# React Native (mobile-specific patterns handled by mobile/.gitignore)
+# Android
+mobile/android/app/build/
+mobile/android/.gradle/
+mobile/android/build/
+*.apk
+*.aab
+
+# iOS
+mobile/ios/build/
+mobile/ios/Pods/
+*.xcworkspace
+!mobile/ios/*.xcworkspace
+
+# Metro
+.metro-health-check*
+
+# Temporary files
+*.tmp
+*.temp
